@@ -477,7 +477,6 @@ def _apply_style() -> None:
             color:#ffffff !important;
             border-color:#1e40af !important;
         }
-        
         section[data-testid="stMain"] [data-baseweb="tab-list"] [role="tab"] {
             color:#475569 !important;
             font-weight:650 !important;

@@ -373,6 +373,21 @@ def _apply_style() -> None:
             margin:.25rem 0 1.1rem;
             padding:.75rem 1rem;
         }
+        .decision-banner {
+            border-radius:10px;
+            margin:.5rem 0 1rem;
+            padding:.9rem 1rem;
+        }
+        .decision-banner * { color:inherit !important; }
+        .decision-pending {
+            background:#fffbeb;
+            border:1px solid #f59e0b;
+            color:#78350f;
+        }
+        .decision-title {
+            font-weight:750;
+            margin-bottom:.45rem;
+        }
         .metric-card {
             background:var(--surface);
             border:1px solid var(--line);
@@ -778,10 +793,13 @@ def _render_result(result: WorkflowResult) -> None:
     if status == "APPROVED":
         st.success("APPROVED — Configured onboarding checks passed")
     elif status == "PENDING":
-        st.warning(
-            f"PENDING — Additional evidence or correction required\n\n"
-            f"Primary reason: {result.primary_reason}\n\n"
-            f"Next action: {result.next_action}"
+        st.markdown(
+            f"<div class='decision-banner decision-pending'>"
+            f"<div class='decision-title'>PENDING — Additional evidence or correction required</div>"
+            f"<div><strong>Primary reason:</strong> {result.primary_reason}</div>"
+            f"<div><strong>Next action:</strong> {result.next_action}</div>"
+            f"</div>",
+            unsafe_allow_html=True,
         )
     else:
         st.error(

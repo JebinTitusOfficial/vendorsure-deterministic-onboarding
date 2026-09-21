@@ -279,20 +279,147 @@ def _apply_style() -> None:
     st.markdown(
         """
         <style>
-        :root { --navy:#0b1f3a; --blue:#2563eb; --line:#cbd5e1; --muted:#64748b; }
-        .stApp { background:#f5f7fb; color:#0f172a; }
-        [data-testid="stSidebar"] { background:var(--navy); }
+        :root {
+            --navy:#0b1f3a;
+            --navy-soft:#12345b;
+            --blue:#2563eb;
+            --blue-soft:#eff6ff;
+            --surface:#ffffff;
+            --canvas:#f4f7fb;
+            --line:#d9e2ec;
+            --muted:#64748b;
+            --text:#0f172a;
+        }
+        .stApp {
+            background:
+                radial-gradient(circle at 92% 2%, rgba(37,99,235,.07), transparent 22rem),
+                var(--canvas);
+            color:var(--text);
+        }
+        [data-testid="stMainBlockContainer"] {
+            max-width:1480px;
+            padding-top:2.25rem;
+            padding-bottom:4rem;
+        }
+        [data-testid="stSidebar"] {
+            background:linear-gradient(180deg, var(--navy) 0%, #07172c 100%);
+            border-right:1px solid rgba(255,255,255,.08);
+        }
         [data-testid="stSidebar"] * { color:#f8fafc !important; }
-        header[data-testid="stHeader"] { background:#f5f7fb; }
+        [data-testid="stSidebar"] [role="radiogroup"] label {
+            border:1px solid transparent;
+            border-radius:9px;
+            padding:.42rem .55rem;
+            margin:.08rem 0;
+        }
+        [data-testid="stSidebar"] [role="radiogroup"] label:hover {
+            background:rgba(255,255,255,.07);
+        }
+        [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {
+            background:rgba(59,130,246,.20);
+            border-color:rgba(147,197,253,.28);
+        }
+        header[data-testid="stHeader"] { background:rgba(244,247,251,.92); }
         div[data-testid="stDecoration"] { display:none; }
-        .brand { color:white; font-size:1.35rem; font-weight:700; letter-spacing:.02em; }
-        .eyebrow { color:var(--muted); font-size:.76rem; font-weight:700; letter-spacing:.10em; text-transform:uppercase; }
-        .status-badge { color:white; display:inline-block; border-radius:999px; font-size:.72rem; font-weight:700; padding:.28rem .62rem; }
-        .notice { background:#fff8e7; border:1px solid #f2d28d; border-radius:8px; color:#7c5412; padding:.7rem .9rem; }
-        .metric-card { background:white; border:1px solid var(--line); border-radius:10px; padding:1rem; min-height:90px; }
+        h1, h2, h3 { color:var(--navy); letter-spacing:-.025em; }
+        h1 { font-size:2.35rem !important; margin-bottom:.35rem !important; }
+        .brand {
+            color:white;
+            font-size:1.45rem;
+            font-weight:750;
+            letter-spacing:-.02em;
+            padding-top:.6rem;
+        }
+        .brand-mark {
+            align-items:center;
+            background:#2563eb;
+            border-radius:8px;
+            display:inline-flex;
+            font-size:.9rem;
+            height:28px;
+            justify-content:center;
+            margin-right:.5rem;
+            width:28px;
+        }
+        .eyebrow {
+            color:#41658f;
+            font-size:.74rem;
+            font-weight:750;
+            letter-spacing:.13em;
+            margin-bottom:.2rem;
+            text-transform:uppercase;
+        }
+        .page-intro {
+            color:var(--muted);
+            font-size:.96rem;
+            margin:-.15rem 0 1.25rem;
+            max-width:760px;
+        }
+        .status-badge {
+            box-shadow:0 1px 2px rgba(15,23,42,.12);
+            color:white;
+            display:inline-block;
+            border-radius:999px;
+            font-size:.7rem;
+            font-weight:750;
+            letter-spacing:.025em;
+            padding:.3rem .65rem;
+        }
+        .notice {
+            background:#fff8e7;
+            border:1px solid #efd28e;
+            border-radius:10px;
+            color:#704b0c;
+            margin:.25rem 0 1.1rem;
+            padding:.75rem 1rem;
+        }
+        .metric-card {
+            background:var(--surface);
+            border:1px solid var(--line);
+            border-radius:12px;
+            box-shadow:0 4px 16px rgba(15,23,42,.045);
+            min-height:98px;
+            padding:1rem;
+            position:relative;
+            overflow:hidden;
+        }
+        .metric-card::before {
+            background:var(--accent, var(--blue));
+            content:"";
+            height:3px;
+            left:0;
+            position:absolute;
+            right:0;
+            top:0;
+        }
+        .metric-blue { --accent:#2563eb; }
+        .metric-green { --accent:#16a34a; }
+        .metric-amber { --accent:#d97706; }
+        .metric-red { --accent:#dc2626; }
+        .metric-violet { --accent:#7c3aed; }
         .metric-label { color:var(--muted); font-size:.78rem; }
-        .metric-value { color:var(--navy); font-size:1.55rem; font-weight:700; margin-top:.25rem; }
-        .result-card { background:white; border-left:6px solid var(--blue); border-radius:10px; border-top:1px solid var(--line); border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:1rem 1.15rem; }
+        .metric-value { color:var(--navy); font-size:1.65rem; font-weight:750; margin-top:.32rem; }
+        .summary-card {
+            background:var(--surface);
+            border:1px solid var(--line);
+            border-radius:12px;
+            box-shadow:0 3px 12px rgba(15,23,42,.04);
+            min-height:105px;
+            padding:.9rem 1rem;
+        }
+        .summary-label { color:var(--muted); font-size:.72rem; font-weight:650; text-transform:uppercase; }
+        .summary-value { color:var(--navy); font-size:.94rem; font-weight:650; margin-top:.5rem; overflow-wrap:anywhere; }
+        div[data-testid="stVerticalBlockBorderWrapper"] {
+            background:rgba(255,255,255,.78);
+            border-color:var(--line) !important;
+            border-radius:12px !important;
+            box-shadow:0 3px 12px rgba(15,23,42,.035);
+        }
+        div[data-testid="stExpander"] {
+            background:rgba(255,255,255,.78);
+            border-color:var(--line) !important;
+            border-radius:10px !important;
+        }
         div[data-testid="stMetric"] { background:white; border:1px solid var(--line); border-radius:10px; padding:.65rem; }
         section[data-testid="stMain"] label,
         section[data-testid="stMain"] [data-testid="stWidgetLabel"],
@@ -331,6 +458,8 @@ def _apply_style() -> None:
             background:#ffffff !important;
             color:#0f172a !important;
             border:1px solid #94a3b8 !important;
+            border-radius:8px !important;
+            font-weight:650 !important;
         }
         section[data-testid="stMain"] div.stButton > button:hover {
             background:#eff6ff !important;
@@ -341,6 +470,7 @@ def _apply_style() -> None:
             background:#1d4ed8 !important;
             color:#ffffff !important;
             border-color:#1d4ed8 !important;
+            box-shadow:0 4px 12px rgba(37,99,235,.20);
         }
         section[data-testid="stMain"] div.stButton > button[kind="primary"]:hover {
             background:#1e40af !important;
@@ -357,6 +487,12 @@ def _apply_style() -> None:
             color:#e2e8f0 !important;
             border-radius:6px;
             padding:.35rem;
+        }
+        section[data-testid="stMain"] hr { border-color:var(--line); }
+        @media (max-width: 900px) {
+            [data-testid="stMainBlockContainer"] { padding-left:1rem; padding-right:1rem; }
+            h1 { font-size:1.9rem !important; }
+            .metric-card { min-height:88px; }
         }
         </style>
         """,
@@ -390,16 +526,16 @@ def _render_metrics(repository: Repository) -> None:
     human_percent = (human_action / len(completed) * 100) if completed else 0
     columns = st.columns(5)
     values = [
-        ("Completed runs", len(completed)),
-        ("Approved", counts["APPROVED"]),
-        ("Pending", counts["PENDING"]),
-        ("Rejected", counts["REJECTED"]),
-        ("Human action", f"{human_percent:.0f}%"),
+        ("Completed runs", len(completed), "metric-blue"),
+        ("Approved", counts["APPROVED"], "metric-green"),
+        ("Pending", counts["PENDING"], "metric-amber"),
+        ("Rejected", counts["REJECTED"], "metric-red"),
+        ("Human action", f"{human_percent:.0f}%", "metric-violet"),
     ]
-    for column, (label, value) in zip(columns, values):
+    for column, (label, value, tone) in zip(columns, values):
         with column:
             st.markdown(
-                f"<div class='metric-card'><div class='metric-label'>{label}</div>"
+                f"<div class='metric-card {tone}'><div class='metric-label'>{label}</div>"
                 f"<div class='metric-value'>{value}</div></div>",
                 unsafe_allow_html=True,
             )
@@ -447,43 +583,45 @@ def _render_runs(
         st.session_state["page"] = "Run History"
 
     for run in runs:
-        columns = st.columns(widths)
-        columns[0].write(run["vendor_name"])
-        if queue:
-            columns[1].markdown(
-                status_badge(run["business_status"] or "FAILED"),
-                unsafe_allow_html=True,
+        with st.container(border=True):
+            columns = st.columns(widths, vertical_alignment="center")
+            columns[0].markdown(f"**{run['vendor_name']}**")
+            if queue:
+                columns[1].markdown(
+                    status_badge(run["business_status"] or "FAILED"),
+                    unsafe_allow_html=True,
+                )
+                columns[2].write(run["primary_reason"] or "Technical workflow failure")
+                columns[3].write(
+                    run["next_action"] or "Correct the technical input and retry."
+                )
+                columns[4].caption(run["started_at"].replace("T", " ")[:19])
+                open_column = columns[5]
+            else:
+                columns[1].code(run["id"][:8])
+                columns[2].caption(run["started_at"].replace("T", " ")[:19])
+                columns[3].markdown(
+                    status_badge(run["technical_state"]),
+                    unsafe_allow_html=True,
+                )
+                columns[4].markdown(
+                    status_badge(run["business_status"]),
+                    unsafe_allow_html=True,
+                )
+                duration = (
+                    f"{run['duration_ms']:.2f} ms"
+                    if run["duration_ms"] is not None
+                    else "—"
+                )
+                columns[5].caption(duration)
+                open_column = columns[6]
+            open_column.button(
+                "Open",
+                key=f"open-{run['id']}",
+                on_click=open_run,
+                args=(run["id"],),
+                use_container_width=True,
             )
-            columns[2].write(run["primary_reason"] or "Technical workflow failure")
-            columns[3].write(
-                run["next_action"] or "Correct the technical input and retry."
-            )
-            columns[4].caption(run["started_at"].replace("T", " ")[:19])
-            open_column = columns[5]
-        else:
-            columns[1].code(run["id"][:8])
-            columns[2].caption(run["started_at"].replace("T", " ")[:19])
-            columns[3].markdown(
-                status_badge(run["technical_state"]),
-                unsafe_allow_html=True,
-            )
-            columns[4].markdown(
-                status_badge(run["business_status"]),
-                unsafe_allow_html=True,
-            )
-            duration = (
-                f"{run['duration_ms']:.2f} ms"
-                if run["duration_ms"] is not None
-                else "—"
-            )
-            columns[5].caption(duration)
-            open_column = columns[6]
-        open_column.button(
-            "Open",
-            key=f"open-{run['id']}",
-            on_click=open_run,
-            args=(run["id"],),
-        )
 
 
 def _render_run_detail(repository: Repository, run_id: str) -> None:
@@ -499,10 +637,18 @@ def _render_run_detail(repository: Repository, run_id: str) -> None:
     st.markdown("<div class='eyebrow'>Run detail</div>", unsafe_allow_html=True)
     st.header(submission["vendor_name"])
     overview = st.columns(4)
-    overview[0].write(f"**Run ID**\n\n`{run['id']}`")
-    overview[1].write(f"**Technical state**\n\n{run['technical_state']}")
-    overview[2].write(f"**Business status**\n\n{run['business_status'] or '—'}")
-    overview[3].write(f"**Duration**\n\n{run['duration_ms'] or 0:.2f} ms")
+    overview_values = [
+        ("Run ID", run["id"]),
+        ("Technical state", run["technical_state"]),
+        ("Business status", run["business_status"] or "—"),
+        ("Duration", f"{run['duration_ms'] or 0:.2f} ms"),
+    ]
+    for column, (label, value) in zip(overview, overview_values):
+        column.markdown(
+            f"<div class='summary-card'><div class='summary-label'>{label}</div>"
+            f"<div class='summary-value'>{value}</div></div>",
+            unsafe_allow_html=True,
+        )
     st.caption(
         f"Submitted {run['started_at']} · Ruleset {run['ruleset_version']} · "
         f"Primary reason: {run['primary_reason'] or '—'}"
@@ -562,6 +708,11 @@ def _render_run_detail(repository: Repository, run_id: str) -> None:
 def render_review_queue(repository: Repository) -> None:
     st.markdown("<div class='eyebrow'>Procurement operations</div>", unsafe_allow_html=True)
     st.title("Review Queue")
+    st.markdown(
+        "<div class='page-intro'>Prioritized exceptions that need a procurement "
+        "or compliance decision.</div>",
+        unsafe_allow_html=True,
+    )
     st.markdown(f"<div class='notice'>{DISCLAIMER}</div>", unsafe_allow_html=True)
     _render_metrics(repository)
     if not repository.list_recent_runs(1):
@@ -625,6 +776,11 @@ def _render_result(result: WorkflowResult) -> None:
 def render_new_submission(repository: Repository) -> None:
     st.markdown("<div class='eyebrow'>Deterministic intake</div>", unsafe_allow_html=True)
     st.title("New Submission")
+    st.markdown(
+        "<div class='page-intro'>Submit vendor details and supporting evidence "
+        "for a deterministic, explainable onboarding decision.</div>",
+        unsafe_allow_html=True,
+    )
     scenario_labels = ["Manual submission"] + [
         scenario.name for scenario in get_demo_scenarios()
     ]
@@ -650,74 +806,86 @@ def render_new_submission(repository: Repository) -> None:
         prepared = {}
 
     with st.form("new-submission-form"):
-        st.subheader("Company")
-        company = st.columns(2)
-        form_data["legal_name"] = company[0].text_input(
-            "Legal company name", value=form_data["legal_name"]
-        )
-        form_data["trade_name"] = company[1].text_input(
-            "Trade name (optional)", value=form_data["trade_name"]
-        )
-        company2 = st.columns(3)
-        form_data["entity_type"] = company2[0].selectbox(
-            "Entity type",
-            ["Private Limited", "Public Limited", "LLP", "Proprietorship", "Other"],
-            index=["Private Limited", "Public Limited", "LLP", "Proprietorship", "Other"].index(
-                form_data["entity_type"]
+        with st.container(border=True):
+            st.subheader("Company")
+            st.caption("Registered identity used for tax-certificate comparison.")
+            company = st.columns(2)
+            form_data["legal_name"] = company[0].text_input(
+                "Legal company name", value=form_data["legal_name"]
             )
-            if form_data["entity_type"] in ["Private Limited", "Public Limited", "LLP", "Proprietorship", "Other"]
-            else 0,
-        )
-        company2[1].text_input("Country", value="India", disabled=True)
-        form_data["gstin"] = company2[2].text_input("GSTIN", value=form_data["gstin"])
-        form_data["registered_address"] = st.text_area(
-            "Registered address", value=form_data["registered_address"]
-        )
-
-        st.subheader("Contact")
-        contact = st.columns(2)
-        form_data["contact_name"] = contact[0].text_input(
-            "Contact name", value=form_data["contact_name"]
-        )
-        form_data["email"] = contact[1].text_input(
-            "Contact email", value=form_data["email"]
-        )
-
-        st.subheader("Banking")
-        banking = st.columns(2)
-        form_data["bank_holder"] = banking[0].text_input(
-            "Account holder", value=form_data["bank_holder"]
-        )
-        form_data["bank_account"] = banking[1].text_input(
-            "Account number", value=form_data["bank_account"], type="password"
-        )
-        banking2 = st.columns(2)
-        form_data["ifsc"] = banking2[0].text_input("IFSC", value=form_data["ifsc"])
-        form_data["bank_name"] = banking2[1].text_input(
-            "Bank name", value=form_data["bank_name"]
-        )
-
-        st.subheader("Documents")
-        uploads = {}
-        if not scenario:
-            upload_columns = st.columns(3)
-            for column, document_type, label in zip(
-                upload_columns,
-                [TAX_CERTIFICATE, BANK_PROOF, COMPLIANCE_DECLARATION],
-                ["Tax Registration Certificate PDF", "Bank Proof PDF", "Compliance Declaration PDF"],
-            ):
-                uploads[document_type] = column.file_uploader(
-                    label, type=["pdf"], key=f"upload-{document_type}"
+            form_data["trade_name"] = company[1].text_input(
+                "Trade name (optional)", value=form_data["trade_name"]
+            )
+            company2 = st.columns(3)
+            form_data["entity_type"] = company2[0].selectbox(
+                "Entity type",
+                ["Private Limited", "Public Limited", "LLP", "Proprietorship", "Other"],
+                index=["Private Limited", "Public Limited", "LLP", "Proprietorship", "Other"].index(
+                    form_data["entity_type"]
                 )
-                if uploads[document_type]:
-                    size = uploads[document_type].size
-                    column.caption(f"{uploads[document_type].name} · {size:,} bytes")
-                    if size > MAX_FILE_SIZE:
-                        column.error("Maximum file size is 5 MB.")
-        else:
-            st.caption("The selected prepared files will be processed by their explicit types.")
+                if form_data["entity_type"] in ["Private Limited", "Public Limited", "LLP", "Proprietorship", "Other"]
+                else 0,
+            )
+            company2[1].text_input("Country", value="India", disabled=True)
+            form_data["gstin"] = company2[2].text_input("GSTIN", value=form_data["gstin"])
+            form_data["registered_address"] = st.text_area(
+                "Registered address", value=form_data["registered_address"]
+            )
 
-        submitted = st.form_submit_button("Run vendor verification", type="primary")
+        with st.container(border=True):
+            st.subheader("Contact")
+            st.caption("Operational contact for clarification requests.")
+            contact = st.columns(2)
+            form_data["contact_name"] = contact[0].text_input(
+                "Contact name", value=form_data["contact_name"]
+            )
+            form_data["email"] = contact[1].text_input(
+                "Contact email", value=form_data["email"]
+            )
+
+        with st.container(border=True):
+            st.subheader("Banking")
+            st.caption("Account values are masked before persistence and display.")
+            banking = st.columns(2)
+            form_data["bank_holder"] = banking[0].text_input(
+                "Account holder", value=form_data["bank_holder"]
+            )
+            form_data["bank_account"] = banking[1].text_input(
+                "Account number", value=form_data["bank_account"], type="password"
+            )
+            banking2 = st.columns(2)
+            form_data["ifsc"] = banking2[0].text_input("IFSC", value=form_data["ifsc"])
+            form_data["bank_name"] = banking2[1].text_input(
+                "Bank name", value=form_data["bank_name"]
+            )
+
+        with st.container(border=True):
+            st.subheader("Documents")
+            st.caption("Machine-readable PDFs only · maximum 5 MB per document.")
+            uploads = {}
+            if not scenario:
+                upload_columns = st.columns(3)
+                for column, document_type, label in zip(
+                    upload_columns,
+                    [TAX_CERTIFICATE, BANK_PROOF, COMPLIANCE_DECLARATION],
+                    ["Tax Registration Certificate PDF", "Bank Proof PDF", "Compliance Declaration PDF"],
+                ):
+                    uploads[document_type] = column.file_uploader(
+                        label, type=["pdf"], key=f"upload-{document_type}"
+                    )
+                    if uploads[document_type]:
+                        size = uploads[document_type].size
+                        column.caption(f"{uploads[document_type].name} · {size:,} bytes")
+                        if size > MAX_FILE_SIZE:
+                            column.error("Maximum file size is 5 MB.")
+            else:
+                st.info("The selected prepared PDFs will be processed by their explicit document types.")
+
+        submitted = st.form_submit_button(
+            "Run vendor verification",
+            type="primary",
+            use_container_width=True,
+        )
 
     if not submitted:
         return
@@ -764,20 +932,35 @@ def render_run_history(repository: Repository) -> None:
     if selected_run_id:
         _render_run_detail(repository, selected_run_id)
     else:
-        st.caption("Complete immutable processing history for audit and traceability.")
+        st.markdown(
+            "<div class='page-intro'>Complete immutable processing history for "
+            "audit, traceability and evidence review.</div>",
+            unsafe_allow_html=True,
+        )
         _render_runs(repository, title="All workflow runs")
 
 
 def render_validation_rules() -> None:
     st.markdown("<div class='eyebrow'>Controls</div>", unsafe_allow_html=True)
     st.title("Validation Rules")
-    st.caption("Read-only deterministic ruleset. Format checks are not authoritative government or banking verification.")
-    for code, category, check, severity, action in RULE_CATALOG:
-        with st.expander(f"{code} · {category}"):
-            st.write(f"**What it checks:** {check}")
-            st.write(f"**Failure severity:** {severity}")
-            st.write(f"**Business impact:** {severity.title()} outcome if no higher-precedence result exists.")
-            st.write(f"**Required next action:** {action}")
+    st.markdown(
+        "<div class='page-intro'>A transparent, read-only controls catalog. "
+        "Every outcome is produced by explicit rules—not an AI model.</div>",
+        unsafe_allow_html=True,
+    )
+    st.caption("Format checks are not authoritative government or banking verification.")
+    categories = ("FORMAT", "DOCUMENT", "CONSISTENCY", "RISK")
+    tabs = st.tabs([category.title() for category in categories])
+    for tab, category in zip(tabs, categories):
+        with tab:
+            for code, rule_category, check, severity, action in RULE_CATALOG:
+                if rule_category != category:
+                    continue
+                with st.expander(f"{code} · {severity}"):
+                    st.write(f"**What it checks:** {check}")
+                    st.write(f"**Failure severity:** {severity}")
+                    st.write(f"**Business impact:** {severity.title()} outcome if no higher-precedence result exists.")
+                    st.write(f"**Required next action:** {action}")
     st.subheader("Decision precedence")
     st.markdown(
         "1. Any failed **REJECTED**-severity rule → **REJECTED**  \n"
@@ -793,7 +976,10 @@ def render_validation_rules() -> None:
 def main() -> None:
     st.set_page_config(page_title=APP_TITLE, page_icon="✓", layout="wide")
     _apply_style()
-    st.sidebar.markdown("<div class='brand'>VendorSure</div>", unsafe_allow_html=True)
+    st.sidebar.markdown(
+        "<div class='brand'><span class='brand-mark'>✓</span>VendorSure</div>",
+        unsafe_allow_html=True,
+    )
     st.sidebar.caption("Deterministic vendor onboarding")
     page = st.sidebar.radio(
         "Navigate",

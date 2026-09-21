@@ -477,6 +477,17 @@ def _apply_style() -> None:
             color:#ffffff !important;
             border-color:#1e40af !important;
         }
+        
+        section[data-testid="stMain"] [data-baseweb="tab-list"] [role="tab"] {
+            color:#475569 !important;
+            font-weight:650 !important;
+        }
+        section[data-testid="stMain"] [data-baseweb="tab-list"] [role="tab"] * {
+            color:inherit !important;
+        }
+        section[data-testid="stMain"] [data-baseweb="tab-list"] [role="tab"][aria-selected="true"] {
+            color:#1d4ed8 !important;
+        }
         section[data-testid="stMain"] pre,
         section[data-testid="stMain"] div[data-testid="stCode"] {
             background:#0f172a !important;

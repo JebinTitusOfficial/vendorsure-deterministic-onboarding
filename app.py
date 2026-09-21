@@ -487,6 +487,18 @@ def _apply_style() -> None:
         section[data-testid="stMain"] [data-baseweb="tab-list"] [role="tab"][aria-selected="true"] {
             color:#1d4ed8 !important;
         }
+        section[data-testid="stMain"] [data-testid="stTab"] {
+            color:#475569 !important;
+            font-weight:650 !important;
+        }
+        section[data-testid="stMain"] [data-testid="stTab"] p {
+            color:#475569 !important;
+            opacity:1 !important;
+        }
+        section[data-testid="stMain"] [data-testid="stTab"][aria-selected="true"],
+        section[data-testid="stMain"] [data-testid="stTab"][aria-selected="true"] p {
+            color:#1d4ed8 !important;
+        }
         section[data-testid="stMain"] pre,
         section[data-testid="stMain"] div[data-testid="stCode"] {
             background:#0f172a !important;

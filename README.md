@@ -4,9 +4,6 @@ VendorSure Phase 1 is a deterministic vendor-onboarding business-logic layer.
 It evaluates synthetic vendor submissions using explicit Python rules and
 returns `APPROVED`, `PENDING`, or `REJECTED` with rule-level evidence.
 
-This phase intentionally does **not** include Streamlit, PDF extraction,
-SQLite, deployment configuration, network calls, AI, LLMs, machine learning,
-or model APIs.
 
 ## Scope
 

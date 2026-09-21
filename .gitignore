@@ -1,0 +1,10 @@
+data/*.db
+*.db
+.env
+.env.*
+.streamlit/secrets.toml
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+uploads/
